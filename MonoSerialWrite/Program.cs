@@ -60,6 +60,34 @@ namespace MonoSerialWrite
             return (char)chars[i];
         }
 
+        public static int BaudRate(int _baudrate)
+        {
+            switch (_baudrate)
+            {
+                case 0:
+                    return 2400;
+                case 1:
+                    return 4800;
+                case 2:
+                    return 9600;
+                case 3:
+                    return 19200;
+                case 4:
+                    return 28800;
+                case 5:
+                    return 38400;
+                case 6:
+                    return 57600;
+                case 7:
+                    return 76800;
+                case 8:
+                    return 115200;
+                default:
+                    return 9600;
+            }
+        }
+
+
         public static void Main(string[] args)
         {
             string ttyname;
@@ -69,13 +97,27 @@ namespace MonoSerialWrite
             ttyname = Console.ReadLine();
             ttyname = @"/dev/" + ttyname;
 
+            Console.WriteLine("Select the baudrate");
+            Console.WriteLine("0 - 2400\n" +
+                              "1 - 4800\n" +
+                              "2 - 9600\n" +
+                              "3 - 19200\n" +
+                              "4 - 28800\n" +
+                              "5 - 38400\n" +
+                              "6 - 57600\n" +
+                              "7 - 76800\n" +
+                              "8 - 115200");
+            Console.Write("Selection -> ");
+            int _baudrate = Convert.ToInt32(Console.ReadLine());
+
             Serial_tty.PortName = ttyname;            // assign the port name
-            Serial_tty.BaudRate = 2400;               // Baudrate
+            Serial_tty.BaudRate = BaudRate(_baudrate);               // Baudrate
             Serial_tty.Parity = Parity.None;          // Parity bit
             Serial_tty.DataBits = 8;                  // No of Data bits
             Serial_tty.StopBits = StopBits.Two;       // No of Stop bits
 
             int amount;
+            Console.WriteLine();
             Console.Write("How many characters need to be serialized? -> ");
             amount = Convert.ToInt32(Console.ReadLine());
 
