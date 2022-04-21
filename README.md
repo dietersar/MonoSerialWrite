@@ -16,8 +16,9 @@ Currently included character sets are:
 - 8 - single character (A) x times
 - 9 - single random character x times
 
-Serial port settings are hardcoded at the moment to:
-- BaudRate 2400
+The following Serial port settings are hardcoded at the moment to:
 - Parity None
 - DataBits 8
 - StopBits 2
+
+BaudRate selection is asked during runtime
